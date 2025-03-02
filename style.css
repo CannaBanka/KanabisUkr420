@@ -19,7 +19,7 @@ body {
 }
 
 .header-line {
-    padding-top: 50px;
+    padding-top: 100px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -64,7 +64,7 @@ body {
 }
 
 .phone-text {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     color: #fff;
 }
@@ -105,7 +105,7 @@ body {
 
 .header-suptitle {
     color: #fff;
-    font-size: 18px;
+    font-size: 50px;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -170,7 +170,7 @@ body {
 }
 
 .history {
-    margin-top: 166px;
+    margin-top: 200px;
 }
 
 .history-title {
@@ -239,7 +239,7 @@ body {
 
 @media (max-width: 992px) {
     .header-title {
-        font-size: 40px;
+        font-size: 50px;
     }
 
     .history-title {
