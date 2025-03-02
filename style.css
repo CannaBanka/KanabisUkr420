@@ -4,27 +4,26 @@ body {
 }
 
 .container {
-    margin: 0px 166px;
+    margin: 0 auto;
+    padding: 0 16px;
+    max-width: 1200px;
 }
 
 .header {
     background-image: url(bg.jpg);
     height: 100vh;
+    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+    background-position: center;
 }
 
 .header-line {
     padding-top: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .nav-item {
@@ -88,13 +87,20 @@ body {
     background-color: #894b17;
 }
 
+.header-down {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
 .header-title {
     color: #ffffff;
     font-family: 'Tinos', serif;
     font-size: 50px;
     font-weight: 400;
-    text-align: center;
-    margin-top: 100px;
+    margin-top: 222px;
+    margin-bottom: 12px;
 }
 
 .header-suptitle {
@@ -112,7 +118,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     text-decoration: none;
     transition: background-color 0.3s linear;
-    margin-top: 20px;
 }
 
 .header-button:hover {
@@ -121,17 +126,19 @@ body {
 
 .cards-holder {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
 .card {
-    width: 300px;
+    width: 100%;
+    max-width: 349px;
     box-shadow: 10px 10px 40px 20px #0000001A;
+    margin-right: 31px;
     background-color: #fff;
+    margin-top: -80px;
     padding: 10px 10px;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
 .card-image {
@@ -141,6 +148,9 @@ body {
 }
 
 .card-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
     font-family: 'Tinos', serif;
     font-size: 26px;
     font-weight: 400;
@@ -152,31 +162,127 @@ body {
 }
 
 .card-desc {
+    text-align: center;
     font-family: 'Tinos', serif;
-    font-size: 20px;
+    font-size: 26px;
+    font-weight: 400;
     color: #656363;
 }
 
-@media (max-width: 768px) {
+.history {
+    margin-top: 166px;
+}
+
+.history-title {
+    font-family: 'Tinos', serif;
+    font-size: 54px;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    margin-top: 21px;
+}
+
+.history-title span {
+    color: #0a4705;
+}
+
+.history-desc {
+    color: #656363;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.history-number {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 30px;
+    flex-wrap: wrap;
+}
+
+.number-item {
+    margin-right: 60px;
+    text-align: center;
+    font-size: 40px;
+    color: #BC9060;
+    margin-bottom: 20px;
+}
+
+.number-item span {
+    display: block;
+    color: #000;
+}
+
+.history-images {
+    position: relative;
+}
+
+.history-holder {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.imgages-1, .imgages-2, .imgages-3 {
+    position: relative;
+    margin: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
     .container {
-        margin: 0 10px;
+        padding: 0 16px;
     }
-    .header-line {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+}
+
+@media (max-width: 992px) {
+    .header-title {
+        font-size: 40px;
     }
+
+    .history-title {
+        font-size: 44px;
+    }
+}
+
+@media (max-width: 768px) {
     .header-title {
         font-size: 30px;
-        margin-top: 50px;
     }
-    .cards-holder {
-        flex-direction: column;
-        align-items: center;
+
+    .history-title {
+        font-size: 34px;
     }
+
     .card {
-        width: 90%;
+        width: 100%;
+        max-width: 100%;
         margin-right: 0;
-        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-title {
+        font-size: 24px;
+    }
+
+    .history-title {
+        font-size: 28px;
+    }
+
+    .header-down {
+        left: 0;
+        transform: none;
+    }
+
+    .header-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
     }
 }
