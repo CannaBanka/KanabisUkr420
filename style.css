@@ -75,13 +75,18 @@ body {
 }
 
 .button {
-    background-color: #32e00f;
+    background-color: #2e0fe0;
     color: #fff;
     text-decoration: none;
-    padding: 14px 18px;
+    padding: 18px 22px;
     font-weight: 700;
     transition: background-color 0.2s linear;
+    position: absolute; /* Используем абсолютное позиционирование */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Центрируем кнопку */
 }
+
 
 .button:hover {
     background-color: #894b17;
