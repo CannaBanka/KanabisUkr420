@@ -1,0 +1,26 @@
+.photo-text {
+    margin-top: 8px;
+    font-weight: 600;
+    color: black;  /* изменено на черный */
+    font-size: 18px;
+  }
+  
+  @keyframes fadeScaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .logo, .site-name {
+    animation: fadeScaleIn 1.2s ease forwards;
+  }
+  
+  .site-name {
+    animation-delay: 0.3s;
+  }
+  
