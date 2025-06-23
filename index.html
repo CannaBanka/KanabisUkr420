@@ -1,187 +1,314 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <link rel='stylesheet' href='style.css'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">
-    <title>Канабіс Україна 420</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Назва сайту</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      text-align: center;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeScaleIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 20px 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .header-logo,
+    .header-spacer {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      animation: fadeScaleIn 1.2s ease forwards;
+    }
+
+    .site-name {
+      flex: 1;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      animation: fadeScaleIn 1.2s ease forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+    }
+
+    .top-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 100px;
+    }
+
+    .bottom-button {
+      margin-top: 60px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 30px;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 8px 2px #4CAF50;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+      box-shadow: 0 0 15px 4px #45a049;
+    }
+
+    .welcome-text {
+      margin-top: 50px;
+      font-size: 22px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .photos {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding-bottom: 50px;
+    }
+
+    .photo-block {
+      border: 2px solid #4CAF50;
+      border-left: none;
+      padding: 10px 15px;
+      background: white;
+      width: 220px;
+      box-sizing: border-box;
+      box-shadow: 0 0 8px 2px #4CAF50;
+    }
+
+    .photo-block:first-child {
+      border-left: 2px solid #4CAF50;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+
+    .photo-block:last-child {
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .photo-block img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .photo-text {
+      margin-top: 8px;
+      font-weight: 600;
+      color: black;
+      font-size: 18px;
+    }
+
+    footer {
+      background-color: #e0e0e0;
+      color: #333;
+      font-size: 16px;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .telegram-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Адаптив для мобильных устройств */
+    @media (max-width: 600px) {
+      header {
+        padding: 15px 20px;
+      }
+
+      .header-logo, .header-spacer {
+        width: 40px;
+        height: 40px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+      }
+
+      .site-name {
+        font-size: 18px;
+        padding: 0 10px;
+        animation-delay: 0.3s;
+        opacity: 1; /* чтобы не было прозрачности на мобилке */
+      }
+
+      .top-buttons {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 60px;
+        padding: 0 10px;
+      }
+
+      .button {
+        font-size: 16px;
+        padding: 12px 20px;
+        box-shadow: 0 0 6px 1.5px #4CAF50;
+        border-radius: 25px;
+      }
+
+      .bottom-button {
+        margin-top: 40px;
+      }
+
+      .welcome-text {
+        font-size: 18px;
+        margin-top: 40px;
+        padding: 0 10px;
+      }
+
+      .photos {
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 30px;
+      }
+
+      .photo-block {
+        width: 90vw;
+        max-width: 320px;
+        margin: 0 auto;
+        border-left: 2px solid #4CAF50;
+        border-radius: 12px;
+        box-shadow: 0 0 8px 2px #4CAF50;
+      }
+
+      .photo-block img {
+        width: 100%;
+        height: auto;
+      }
+
+      .photo-text {
+        font-size: 16px;
+        padding: 0 10px 10px 10px;
+      }
+
+      footer {
+        font-size: 14px;
+        padding: 12px 15px;
+      }
+
+      .telegram-icon {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class='header'>
-    <div class='container'>
-        <div class='header-line'>
-            <div class='header-logo'>
-                <img src="logo.jpg" alt="">
-            </div>
+  <header>
+    <div class="header-logo">
+      <img src="logo.png.png" alt="dgdg" class="logo" />
+    </div>
+    <div class="site-name">Канабіс Україна</div>
+    <div class="header-spacer"></div>
+  </header>
 
-            
-            <div class='cart'>
-                <a href="#">
-                    <img class='cart-img' src="cart.png" alt="">
-                </a>
-            </div>
-
-            <div class='phone'>
-                <div class='phone-holder'>
-                    <div class='phone-img'>
-                        <img src="phone.png" alt="">
-                    </div>
-
-                    <div class='number'><a class='num' href='https://t.me/operator_kanabis'>Оператор</a></div>
-                </div>
-
-                <div class='phone-text'>
-                    Оператор <br> 
-                </div>
-            </div>
-
-            <div class='btn'>
-                <a class='button' href='https://t.me/+71q4kRjw-v43NTVi'>ЗАМОВИТИ</a>
-            </div>
-        </div>
-
-
-        <div class='header-down'>
-
-            <div class='header-title'>
-                Вітаємо вас 
-
-                <div class='header-subtitle'>
-                    на сайті
-                </div>
-
-                <div class='header-suptitle'>
-                    Канабіс Україна 420
-                </div>
-
-                
-
-            </div>
-
-        </div>
-
+  <main>
+    <div class="top-buttons">
+      <a href="https://t.me/operator_kanabis" class="button">Оператор</a>
+      <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button">Правила магазину</a>
+      <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button">Прайс</a>
     </div>
 
-</div>
-
-<div class='cards'>
-
-    <div class='container'>
-
-       <div class='cards-holder'>
-
-            <div class='card'>
-
-                <div class='card-image'>
-                    <img class='card-img' src='logo3.png'>
-                </div>
-
-                <div class='card-title'>
-                    Якісні  <span>Шишки</span>
-                </div>
-
-                <div class='card-desc'>
-                    Якісні сорти канабісу, Вирощуємо в Україні! З теплиць! Великий асортимент! 
-                </div>
-
-            </div>
-
-            <div class='card'>
-
-                <div class='card-image'>
-                    <img class='card-img' src='logo1.jpg'>
-                </div>
-
-                <div class='card-title'>
-                    Індика  <span></span>
-                </div>
-
-                <div class='card-desc'>
-                    Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa, що робить її придатною для медичного використання.
-                    Ефект: Розслабляючий, заспокійливий, седативний (часто називають "ефектом дивану").
-                    Використання: Застосовується для зняття стресу, безсоння, м’язової напруги та болю.
-
-                </div>
-
-            </div>
-
-            <div class='card'>
-
-                <div class='card-image'>
-                    <img class='card-img' src='logo2.jpg'>
-                </div>
-
-                <div class='card-title'>
-                   Сатива<span></span>
-                </div>
-
-                <div class='card-desc'>
-                    Sativa зазвичай містить вищий рівень THC і нижчий рівень CBD, що надає їй більш психоактивний ефект у порівнянні з Indica.
-                    Ефект: Енергійний, стимулюючий, підвищує концентрацію та креативність.
-                    Використання: Застосовується для боротьби з депресією, втомою, покращення настрою.
-                </div>
-
-            </div>
-        </div>
+    <div class="bottom-button">
+      <a href="https://t.me/+j6_cJdfGm8tkMjgy" class="button">Канал</a>
     </div>
 
-</div>
-
-
-<div class='history'>
-
-    <div class='container'>
-
-        <div class='history-holder'>
-            <div class='history-info'>
-                <div class='history-title'>
-                    Актуальні <span>Сорти</span>
-                </div>
-
-                <div class='history-desc'>
-                    Ice Cream,
-                    Purple Kush,
-                    Blueberry,
-                    Afghan Kush,
-                    Amnesia Haze,
-                    Super Silver Haze, 
-                    Ak-47,
-                    Lemon Haze,
-                    Оpium
-                </div>
-
-
-                <div class='history-number'>
-                    <div class='number-item'>
-                        10+ <span>Сортів</span>
-                    </div>
-
-                    <div class='number-item'>
-                        100+ <span>Доставок</span>
-                    </div>
-
-                    <div class='number-item'>
-                        30+ <span>Тріп-описів</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class='history-images'>
-                <img class='imgages-1' src="1.jpg" alt="">
-                <img class='imgages-2' src="2.jpg" alt="">
-                <img class='imgages-3' src="3.jpg" alt="">
-        </div>
-        </div>
-
+    <div class="welcome-text">
+      Вітаємо вас на сайті
     </div>
 
-</div>
+    <div class="photos">
+      <div class="photo-block">
+        <img src="1.jpg" alt="Фото 1" />
+        <div class="photo-text">Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa, що робить її придатною для медичного використання. Ефект: Розслабляючий, заспокійливий, седативний (часто називають "ефектом дивану"). Використання: Застосовується для зняття стресу, безсоння, м’язової напруги та болю. </div>
+      </div>
+      <div class="photo-block">
+        <img src="3.jpg" alt="Фото 2" />
+        <div class="photo-text">☺</div>
+      </div>
+      <div class="photo-block">
+        <img src="2.jpg" alt="Фото 3" />
+        <div class="photo-text">Sativa зазвичай містить вищий рівень THC і нижчий рівень CBD, що надає їй більш психоактивний ефект у порівнянні з Indica. Ефект: Енергійний, стимулюючий, підвищує концентрацію та креативність. Використання: Застосовується для боротьби з депресією, втомою, покращення настрою.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>🔒 Сайт захищено</div>
+    <a href="https://t.me/operator_kanabis" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="telegram-icon" />
+    </a>
+  </footer>
 
 </body>
 </html>
