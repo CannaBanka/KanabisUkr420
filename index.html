@@ -19,24 +19,28 @@
       flex-direction: column;
     }
 
+    /* Частицы поверх всего */
     #particles-js {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: 9999; /* ПОВЕРХ всего */
+      pointer-events: none; /* Чтобы клики проходили сквозь */
     }
 
     main {
       flex: 1;
       text-align: center;
-      background-color: rgba(245, 245, 245, 0.85); /* полупрозрачный фон для видимости частиц */
+      background-color: rgba(245, 245, 245, 0.3); /* Полупрозрачный фон для видимости частиц */
       border-radius: 12px;
       margin: 20px auto;
       max-width: 1000px;
       padding: 20px;
       box-sizing: border-box;
+      position: relative;
+      z-index: 1; /* Ниже частиц */
     }
 
     @keyframes fadeInUp {
@@ -57,7 +61,7 @@
       padding: 20px 40px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: relative;
-      z-index: 1;
+      z-index: 1; /* Ниже частиц */
     }
 
     .header-logo, .header-spacer {
@@ -211,7 +215,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-      z-index: 1;
+      z-index: 1; /* Ниже частиц */
     }
 
     .telegram-icon {
@@ -301,7 +305,7 @@
     }
 
     body.dark main {
-      background-color: rgba(18, 18, 18, 0.85);
+      background-color: rgba(18, 18, 18, 0.3);
     }
 
     body.dark header {
@@ -342,7 +346,7 @@
 </head>
 <body>
 
-  <!-- Particles Background -->
+  <!-- Particles Background ПОВЕРХ ВСЕГО -->
   <div id="particles-js"></div>
 
   <header>
@@ -451,9 +455,12 @@
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 3,
           direction: "none",
-          out_mode: "out"
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false
         }
       },
       interactivity: {
@@ -464,10 +471,11 @@
           resize: true
         },
         modes: {
-          grab: { distance: 140, line_linked: { opacity: 1 } },
-          bubble: { distance: 400, size: 40, duration: 2, opacity: 8 },
-          repulse: { distance: 200 },
-          push: { particles_nb: 4 }
+          grab: { distance: 200, line_linked: { opacity: 0.5 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+          repulse: { distance: 200, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 }
         }
       },
       retina_detect: true
