@@ -17,30 +17,36 @@
     body {
       display: flex;
       flex-direction: column;
+      position: relative; /* Чтобы z-index у детей работал */
+      min-height: 100vh;
+      color: #333;
     }
 
-    /* Частицы поверх всего */
+    /* Частицы — фон */
     #particles-js {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 9999; /* ПОВЕРХ всего */
-      pointer-events: none; /* Чтобы клики проходили сквозь */
+      z-index: 0; /* За всем контентом */
+      pointer-events: none; /* Чтобы клики не блокировались */
+    }
+
+    header, main, footer {
+      position: relative;
+      z-index: 1; /* Над частицами */
     }
 
     main {
       flex: 1;
       text-align: center;
-      background-color: rgba(245, 245, 245, 0.3); /* Полупрозрачный фон для видимости частиц */
+      background-color: rgba(245, 245, 245, 0.85);
       border-radius: 12px;
       margin: 20px auto;
       max-width: 1000px;
       padding: 20px;
       box-sizing: border-box;
-      position: relative;
-      z-index: 1; /* Ниже частиц */
     }
 
     @keyframes fadeInUp {
@@ -60,8 +66,7 @@
       background-color: #fff;
       padding: 20px 40px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1; /* Ниже частиц */
+      z-index: 1;
     }
 
     .header-logo, .header-spacer {
@@ -114,7 +119,6 @@
       box-shadow: 0 0 8px 2px #4CAF50;
       cursor: pointer;
 
-      /* Скрываем изначально для анимации */
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
     }
@@ -124,7 +128,6 @@
       box-shadow: 0 0 15px 4px #45a049;
     }
 
-    /* Анимационные задержки для кнопок */
     .top-buttons .button:nth-child(1) {
       animation-delay: 0.5s;
     }
@@ -215,7 +218,7 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-      z-index: 1; /* Ниже частиц */
+      z-index: 1;
     }
 
     .telegram-icon {
@@ -305,7 +308,7 @@
     }
 
     body.dark main {
-      background-color: rgba(18, 18, 18, 0.3);
+      background-color: rgba(18, 18, 18, 0.85);
     }
 
     body.dark header {
@@ -346,7 +349,7 @@
 </head>
 <body>
 
-  <!-- Particles Background ПОВЕРХ ВСЕГО -->
+  <!-- Частицы - Фон -->
   <div id="particles-js"></div>
 
   <header>
@@ -421,67 +424,67 @@
     });
   </script>
 
-  <!-- Particles Initialization -->
+  <!-- Particles.js config -->
   <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: {
-          value: 60,
-          density: {
-            enable: true,
-            value_area: 800
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": { "enable": true, "value_area": 800 }
+        },
+        "color": { "value": "#4CAF50" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#4CAF50",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": { "enable": false }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": { "opacity": 0.5 }
+          },
+          "push": {
+            "particles_nb": 4
           }
-        },
-        color: { value: "#4CAF50" },
-        shape: {
-          type: "circle",
-          stroke: { width: 0, color: "#000000" },
-          polygon: { nb_sides: 5 }
-        },
-        opacity: {
-          value: 0.5,
-          random: false
-        },
-        size: {
-          value: 4,
-          random: true
-        },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#4CAF50",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 3,
-          direction: "none",
-          random: false,
-          straight: false,
-          out_mode: "out",
-          bounce: false
         }
       },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "grab" },
-          onclick: { enable: true, mode: "push" },
-          resize: true
-        },
-        modes: {
-          grab: { distance: 200, line_linked: { opacity: 0.5 } },
-          bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
-          repulse: { distance: 200, duration: 0.4 },
-          push: { particles_nb: 4 },
-          remove: { particles_nb: 2 }
-        }
-      },
-      retina_detect: true
+      "retina_detect": true
     });
   </script>
 
 </body>
 </html>
-
