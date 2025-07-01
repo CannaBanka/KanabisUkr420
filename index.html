@@ -19,31 +19,28 @@
       flex-direction: column;
     }
 
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     main {
       flex: 1;
       text-align: center;
     }
 
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeScaleIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     header {
@@ -55,8 +52,7 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .header-logo,
-    .header-spacer {
+    .header-logo, .header-spacer {
       width: 60px;
       height: 60px;
       display: flex;
@@ -180,15 +176,9 @@
       height: 28px;
     }
 
-    /* Адаптив для мобильных устройств */
     @media (max-width: 600px) {
       header {
         padding: 15px 20px;
-      }
-
-      .header-logo, .header-spacer {
-        width: auto;
-        height: auto;
       }
 
       .logo {
@@ -213,7 +203,6 @@
       .button {
         font-size: 16px;
         padding: 12px 20px;
-        box-shadow: 0 0 6px 1.5px #4CAF50;
         border-radius: 25px;
       }
 
@@ -262,7 +251,6 @@
       }
     }
 
-    /* Темна тема */
     body.dark {
       background-color: #121212;
       color: #f0f0f0;
@@ -306,9 +294,12 @@
 </head>
 <body>
 
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
   <header>
     <div class="header-logo">
-      <img src="logo.png.png" alt="dgdg" class="logo" />
+      <img src="logo.png.png" alt="Logo" class="logo" />
     </div>
     <div class="site-name">Канабіс Україна</div>
     <div class="header-spacer">
@@ -328,9 +319,7 @@
       <a href="https://t.me/+fKqZ9xkQbNNjMzAy" class="button">Канал</a>
     </div>
 
-    <div class="welcome-text">
-      Вітаємо вас на сайті
-    </div>
+    <div class="welcome-text">Вітаємо вас на сайті</div>
 
     <div class="photos">
       <div class="photo-block">
@@ -359,6 +348,10 @@
     </a>
   </footer>
 
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <!-- Theme Toggle Script -->
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -376,5 +369,63 @@
     });
   </script>
 
+  <!-- Particles Initialization -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: {
+          value: 60,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: { value: "#4CAF50" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 }
+        },
+        opacity: {
+          value: 0.5,
+          random: false
+        },
+        size: {
+          value: 4,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#4CAF50",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8 },
+          repulse: { distance: 200 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+
 </body>
 </html>
+
