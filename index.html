@@ -17,36 +17,26 @@
     body {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-    }
-
-    main {
-      position: relative;
-      flex: 1;
-      max-width: 1000px;
-      margin: 20px auto 40px auto;
-      border-radius: 12px;
-      overflow: hidden;
-      /* фон теперь будет у внутреннего блока */
     }
 
     #particles-js {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      border-radius: 12px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
 
-    .content-wrapper {
-      position: relative;
-      z-index: 1;
-      background-color: rgba(245, 245, 245, 0.85);
+    main {
+      flex: 1;
+      text-align: center;
+      background-color: rgba(245, 245, 245, 0.85); /* полупрозрачный фон для видимости частиц */
       border-radius: 12px;
-      padding: 30px 20px 50px 20px;
+      margin: 20px auto;
+      max-width: 1000px;
+      padding: 20px;
       box-sizing: border-box;
-      min-height: 100%;
     }
 
     @keyframes fadeInUp {
@@ -66,6 +56,8 @@
       background-color: #fff;
       padding: 20px 40px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
     }
 
     .header-logo, .header-spacer {
@@ -93,7 +85,6 @@
       animation: fadeScaleIn 1.2s ease forwards;
       animation-delay: 0.3s;
       opacity: 0;
-      animation-fill-mode: forwards;
     }
 
     .top-buttons {
@@ -101,16 +92,10 @@
       justify-content: center;
       gap: 20px;
       margin-top: 100px;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
-      animation-delay: 0.5s;
     }
 
     .bottom-button {
       margin-top: 60px;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
-      animation-delay: 0.7s;
     }
 
     .button {
@@ -124,7 +109,10 @@
       transition: background-color 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 8px 2px #4CAF50;
       cursor: pointer;
-      user-select: none;
+
+      /* Скрываем изначально для анимации */
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .button:hover {
@@ -132,14 +120,31 @@
       box-shadow: 0 0 15px 4px #45a049;
     }
 
+    /* Анимационные задержки для кнопок */
+    .top-buttons .button:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+    .top-buttons .button:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+    .top-buttons .button:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    .top-buttons .button:nth-child(4) {
+      animation-delay: 1.1s;
+    }
+    .bottom-button .button {
+      animation-delay: 1.3s;
+    }
+
     .welcome-text {
       margin-top: 50px;
       font-size: 22px;
       color: #333;
       font-weight: 600;
-      animation: fadeInUp 1s ease forwards;
       opacity: 0;
-      animation-delay: 0.8s;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.5s;
     }
 
     .photos {
@@ -148,9 +153,6 @@
       justify-content: center;
       gap: 0;
       padding-bottom: 50px;
-      animation: fadeInUp 1s ease forwards;
-      opacity: 0;
-      animation-delay: 1s;
     }
 
     .photo-block {
@@ -161,28 +163,26 @@
       width: 220px;
       box-sizing: border-box;
       box-shadow: 0 0 8px 2px #4CAF50;
-      animation: fadeInUp 1s ease forwards;
+
       opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .photo-block:first-child {
       border-left: 2px solid #4CAF50;
       border-top-left-radius: 12px;
       border-bottom-left-radius: 12px;
-      animation-delay: 1.1s;
-      opacity: 0;
+      animation-delay: 1.7s;
     }
 
     .photo-block:nth-child(2) {
-      animation-delay: 1.2s;
-      opacity: 0;
+      animation-delay: 1.9s;
     }
 
     .photo-block:last-child {
       border-top-right-radius: 12px;
       border-bottom-right-radius: 12px;
-      animation-delay: 1.3s;
-      opacity: 0;
+      animation-delay: 2.1s;
     }
 
     .photo-block img {
@@ -210,6 +210,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .telegram-icon {
@@ -292,9 +294,14 @@
       }
     }
 
+    /* Тёмная тема */
     body.dark {
       background-color: #121212;
       color: #f0f0f0;
+    }
+
+    body.dark main {
+      background-color: rgba(18, 18, 18, 0.85);
     }
 
     body.dark header {
@@ -335,50 +342,48 @@
 </head>
 <body>
 
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
   <header>
     <div class="header-logo">
       <img src="logo.png.png" alt="Logo" class="logo" />
     </div>
     <div class="site-name">Канабіс Україна</div>
     <div class="header-spacer">
-      <button id="theme-toggle" class="button">🌙 Темна тема</button>
+      <button id="theme-toggle" class="button" style="opacity:1; animation:none;">🌙 Темна тема</button>
     </div>
   </header>
 
   <main>
-    <!-- Частицы внутри main -->
-    <div id="particles-js"></div>
+    <div class="top-buttons">
+      <a href="https://t.me/operator_kanabis" class="button">Оператор</a>
+      <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button">Правила магазину</a>
+      <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button">Прайс</a>
+      <a href="https://cannabanka.github.io/otzive/" class="button">Відгуки</a>
+    </div>
 
-    <div class="content-wrapper">
-      <div class="top-buttons">
-        <a href="https://t.me/operator_kanabis" class="button">Оператор</a>
-        <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button">Правила магазину</a>
-        <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button">Прайс</a>
-        <a href="https://cannabanka.github.io/otzive/" class="button">Відгуки</a>
-      </div>
+    <div class="bottom-button">
+      <a href="https://t.me/+fKqZ9xkQbNNjMzAy" class="button">Канал</a>
+    </div>
 
-      <div class="bottom-button">
-        <a href="https://t.me/+fKqZ9xkQbNNjMzAy" class="button">Канал</a>
-      </div>
+    <div class="welcome-text">Вітаємо вас на сайті</div>
 
-      <div class="welcome-text">Вітаємо вас на сайті</div>
-
-      <div class="photos">
-        <div class="photo-block">
-          <img src="1.jpg" alt="Фото 1" />
-          <div class="photo-text">
-            Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю.
-          </div>
+    <div class="photos">
+      <div class="photo-block">
+        <img src="1.jpg" alt="Фото 1" />
+        <div class="photo-text">
+          Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю.
         </div>
-        <div class="photo-block">
-          <img src="3.jpg" alt="Фото 2" />
-          <div class="photo-text">☺</div>
-        </div>
-        <div class="photo-block">
-          <img src="2.jpg" alt="Фото 3" />
-          <div class="photo-text">
-            Sativa має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при депресії, втомі та для покращення настрою.
-          </div>
+      </div>
+      <div class="photo-block">
+        <img src="3.jpg" alt="Фото 2" />
+        <div class="photo-text">☺</div>
+      </div>
+      <div class="photo-block">
+        <img src="2.jpg" alt="Фото 3" />
+        <div class="photo-text">
+          Sativa має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при депресії, втомі та для покращення настрою.
         </div>
       </div>
     </div>
@@ -425,48 +430,44 @@
         },
         color: { value: "#4CAF50" },
         shape: {
-          type: "circle"
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 }
         },
         opacity: {
-          value: 0.3,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false
-          }
+          value: 0.5,
+          random: false
         },
         size: {
-          value: 6,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 8,
-            size_min: 0.1,
-            sync: false
-          }
+          value: 4,
+          random: true
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#4CAF50",
+          opacity: 0.4,
+          width: 1
         },
         move: {
           enable: true,
-          speed: 1,
+          speed: 2,
           direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false
+          out_mode: "out"
         }
       },
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: {
-            enable: false
-          },
-          onclick: {
-            enable: false
-          },
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
           resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          bubble: { distance: 400, size: 40, duration: 2, opacity: 8 },
+          repulse: { distance: 200 },
+          push: { particles_nb: 4 }
         }
       },
       retina_detect: true
@@ -475,3 +476,4 @@
 
 </body>
 </html>
+
