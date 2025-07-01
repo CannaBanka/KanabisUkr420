@@ -31,6 +31,12 @@
     main {
       flex: 1;
       text-align: center;
+      background-color: rgba(245, 245, 245, 0.85); /* полупрозрачный фон для видимости частиц */
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 1000px;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     @keyframes fadeInUp {
@@ -50,6 +56,8 @@
       background-color: #fff;
       padding: 20px 40px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
     }
 
     .header-logo, .header-spacer {
@@ -101,6 +109,10 @@
       transition: background-color 0.3s, box-shadow 0.3s;
       box-shadow: 0 0 8px 2px #4CAF50;
       cursor: pointer;
+
+      /* Скрываем изначально для анимации */
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .button:hover {
@@ -108,11 +120,31 @@
       box-shadow: 0 0 15px 4px #45a049;
     }
 
+    /* Анимационные задержки для кнопок */
+    .top-buttons .button:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+    .top-buttons .button:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+    .top-buttons .button:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+    .top-buttons .button:nth-child(4) {
+      animation-delay: 1.1s;
+    }
+    .bottom-button .button {
+      animation-delay: 1.3s;
+    }
+
     .welcome-text {
       margin-top: 50px;
       font-size: 22px;
       color: #333;
       font-weight: 600;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1.5s;
     }
 
     .photos {
@@ -131,17 +163,26 @@
       width: 220px;
       box-sizing: border-box;
       box-shadow: 0 0 8px 2px #4CAF50;
+
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
     }
 
     .photo-block:first-child {
       border-left: 2px solid #4CAF50;
       border-top-left-radius: 12px;
       border-bottom-left-radius: 12px;
+      animation-delay: 1.7s;
+    }
+
+    .photo-block:nth-child(2) {
+      animation-delay: 1.9s;
     }
 
     .photo-block:last-child {
       border-top-right-radius: 12px;
       border-bottom-right-radius: 12px;
+      animation-delay: 2.1s;
     }
 
     .photo-block img {
@@ -169,6 +210,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .telegram-icon {
@@ -251,9 +294,14 @@
       }
     }
 
+    /* Тёмная тема */
     body.dark {
       background-color: #121212;
       color: #f0f0f0;
+    }
+
+    body.dark main {
+      background-color: rgba(18, 18, 18, 0.85);
     }
 
     body.dark header {
@@ -303,7 +351,7 @@
     </div>
     <div class="site-name">Канабіс Україна</div>
     <div class="header-spacer">
-      <button id="theme-toggle" class="button">🌙 Темна тема</button>
+      <button id="theme-toggle" class="button" style="opacity:1; animation:none;">🌙 Темна тема</button>
     </div>
   </header>
 
