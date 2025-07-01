@@ -4,16 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Назва сайту</title>
-
-  <!-- Подключение Google Fonts: Montserrat + Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
-
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Open Sans', Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f5f5f5;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -21,24 +17,25 @@
     body {
       display: flex;
       flex-direction: column;
-      position: relative;
+      position: relative; /* Чтобы z-index у детей работал */
       min-height: 100vh;
       color: #333;
     }
 
+    /* Частицы — фон */
     #particles-js {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
-      pointer-events: none;
+      z-index: 0; /* За всем контентом */
+      pointer-events: none; /* Чтобы клики не блокировались */
     }
 
     header, main, footer {
       position: relative;
-      z-index: 1;
+      z-index: 1; /* Над частицами */
     }
 
     main {
@@ -92,8 +89,7 @@
       flex: 1;
       text-align: center;
       font-size: 24px;
-      font-weight: 700;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
       color: #333;
       animation: fadeScaleIn 1.2s ease forwards;
       animation-delay: 0.3s;
@@ -384,49 +380,113 @@
       <div class="photo-block">
         <img src="1.jpg" alt="Фото 1" />
         <div class="photo-text">
-          Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa.
+          Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю.
         </div>
       </div>
       <div class="photo-block">
-        <img src="2.jpg" alt="Фото 2" />
-        <div class="photo-text">
-          Sativa зазвичай має вищий рівень THC і нижчий рівень CBD, і часто асоціюється з більш енергійним ефектом.
-        </div>
+        <img src="3.jpg" alt="Фото 2" />
+        <div class="photo-text">☺</div>
       </div>
       <div class="photo-block">
-        <img src="3.jpg" alt="Фото 3" />
+        <img src="2.jpg" alt="Фото 3" />
         <div class="photo-text">
-          Гібриди — це суміші Indica та Sativa, що можуть мати різні пропорції THC та CBD.
+          Sativa має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при депресії, втомі та для покращення настрою.
         </div>
       </div>
     </div>
   </main>
 
   <footer>
-    <div>© 2023 Канабіс Україна</div>
+    <div>🔒 Сайт захищено</div>
     <a href="https://t.me/operator_kanabis" target="_blank" rel="noopener noreferrer">
-      <img src="telegram_icon.svg" alt="Telegram" class="telegram-icon" />
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="telegram-icon" />
     </a>
   </footer>
 
-  <script src="particles.min.js"></script>
-  <script>
-    /* Инициализация частиц */
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('Particles.js загружен');
-    });
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-    /* Переключение темной темы */
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    themeToggleBtn.addEventListener('click', () => {
+  <!-- Theme Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+      document.body.classList.add('dark');
+      toggleBtn.textContent = '☀️ Світла тема';
+    }
+
+    toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      if(document.body.classList.contains('dark')) {
-        themeToggleBtn.textContent = '☀️ Світла тема';
-      } else {
-        themeToggleBtn.textContent = '🌙 Темна тема';
-      }
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = isDark ? '☀️ Світла тема' : '🌙 Темна тема';
+    });
+  </script>
+
+  <!-- Particles.js config -->
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": { "enable": true, "value_area": 800 }
+        },
+        "color": { "value": "#4CAF50" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": { "enable": false }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#4CAF50",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": { "enable": false }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": { "opacity": 0.5 }
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
     });
   </script>
 
 </body>
 </html>
+
+Что прикольного можна сделать 
