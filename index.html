@@ -14,7 +14,7 @@
       height: 100%;
       font-family: 'Open Sans', Arial, sans-serif;
       background-color: #f5f5f5;
-      transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
     }
 
     body {
@@ -83,20 +83,26 @@
     }
 
     .scrolling-text {
-      font-size: 20px;
-      font-weight: bold;
-      color: #4CAF50;
-      animation: scrollText 10s linear infinite;
-      white-space: nowrap;
+      position: relative;
       width: 100%;
+      height: 30px;
       overflow: hidden;
       margin-bottom: 20px;
+    }
+
+    .scrolling-text span {
+      position: absolute;
+      white-space: nowrap;
+      animation: scrollText 10s linear infinite;
+      color: #4CAF50;
+      font-size: 20px;
+      font-weight: bold;
       font-family: 'Montserrat', sans-serif;
     }
 
     @keyframes scrollText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
+      from { left: 100%; }
+      to { left: -100%; }
     }
 
     .top-buttons {
@@ -221,7 +227,6 @@
       }
     }
 
-    /* Темна тема */
     body.dark {
       background-color: #121212;
       color: #f0f0f0;
@@ -283,7 +288,9 @@
   </header>
 
   <main>
-    <div class="scrolling-text">🌟 Новинка в прайсі! 🌟</div>
+    <div class="scrolling-text">
+      <span>🌟 Новинка в прайсі! 🌟</span>
+    </div>
 
     <div class="top-buttons">
       <a href="https://t.me/operator_kanabis" class="button">🛒 ЗАМОВИТИ</a>
