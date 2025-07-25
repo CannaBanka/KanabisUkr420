@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CannaBanka</title>
-
-  <!-- Подключаем Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet" />
 
   <style>
@@ -115,12 +113,8 @@
     }
 
     @keyframes scrollText {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
     .top-buttons {
@@ -170,6 +164,21 @@
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
       animation-delay: 1.5s;
+    }
+
+    /* 🔥 Новий блок "Порада" */
+    #advice-box {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #4CAF50;
+      font-family: 'Montserrat', sans-serif;
+      animation: fadeInUp 1s ease forwards;
+      min-height: 30px;
+    }
+
+    body.dark #advice-box {
+      color: #81C784;
     }
 
     .photos {
@@ -235,89 +244,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 1;
-      font-family: 'Open Sans', Arial, sans-serif;
     }
 
     .telegram-icon {
       width: 28px;
       height: 28px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 15px 20px;
-      }
-
-      .logo {
-        width: 40px;
-        height: 40px;
-      }
-
-      .site-name {
-        font-size: 18px;
-        padding: 0 10px;
-        animation-delay: 0.3s;
-        opacity: 1;
-      }
-
-      .top-buttons {
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 60px;
-        padding: 0 10px;
-      }
-
-      .button {
-        font-size: 16px;
-        padding: 12px 20px;
-        border-radius: 25px;
-      }
-
-      .bottom-button {
-        margin-top: 40px;
-      }
-
-      .welcome-text {
-        font-size: 18px;
-        margin-top: 40px;
-        padding: 0 10px;
-      }
-
-      .photos {
-        flex-direction: column;
-        gap: 20px;
-        padding-bottom: 30px;
-      }
-
-      .photo-block {
-        width: 90vw;
-        max-width: 320px;
-        margin: 0 auto;
-        border-left: 2px solid #4CAF50;
-        border-radius: 12px;
-      }
-
-      .photo-block img {
-        width: 100%;
-        height: auto;
-      }
-
-      .photo-text {
-        font-size: 16px;
-        padding: 0 10px 10px 10px;
-      }
-
-      footer {
-        font-size: 14px;
-        padding: 12px 15px;
-      }
-
-      .telegram-icon {
-        width: 24px;
-        height: 24px;
-      }
     }
 
     body.dark {
@@ -331,11 +262,6 @@
 
     body.dark header {
       background-color: #1e1e1e;
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(255,255,255,0.1);
-    }
-
-    body.dark .site-name {
       color: #fff;
     }
 
@@ -403,11 +329,14 @@
 
     <div class="welcome-text">Вітаємо вас на сайті</div>
 
+    <!-- 🔥 Блок "Порада" -->
+    <div id="advice-box">⏳ Завантаження поради...</div>
+
     <div class="photos">
       <div class="photo-block">
         <img src="1.jpg" alt="Фото 1" />
         <div class="photo-text">
-          Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю.
+          Indica містить вищий рівень CBD (канабідіолу) і нижчий рівень THC (тетрагідроканабінолу) порівняно з Sativa. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю. 
         </div>
       </div>
       <div class="photo-block">
@@ -417,7 +346,7 @@
       <div class="photo-block">
         <img src="2.jpg" alt="Фото 3" />
         <div class="photo-text">
-          Sativa має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при депресії, втомі та для покращення настрою.
+          Sativa має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при депресії, втомі та для покращення настрою. 
         </div>
       </div>
     </div>
@@ -425,7 +354,7 @@
 
   <footer>
     <div>🔒 Сайт захищено</div>
-    <a href="https://t.me/operator_kanabis" target="_blank" rel="noopener noreferrer">
+    <a href="https://t.me/operator_kanabis" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="telegram-icon" />
     </a>
   </footer>
@@ -435,12 +364,10 @@
   <script>
     const toggleBtn = document.getElementById('theme-toggle');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
       document.body.classList.add('dark');
       toggleBtn.textContent = '☀️ Світла тема';
     }
-
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
       const isDark = document.body.classList.contains('dark');
@@ -449,41 +376,54 @@
     });
   </script>
 
+  <!-- 🔁 Скрипт "Поради" -->
   <script>
-    particlesJS('particles-js',
-      {
-        "particles": {
-          "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-          "color": { "value": "#4caf50" },
-          "shape": { "type": "circle" },
-          "opacity": { "value": 0.3, "random": false },
-          "size": { "value": 3, "random": true },
-          "line_linked": {
-            "enable": true,
-            "distance": 120,
-            "color": "#4caf50",
-            "opacity": 0.2,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 1,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false
-          }
+    const adviceBox = document.getElementById("advice-box");
+    const advices = [
+      "🌿 Порада: Зберігайте продукт у темному та прохолодному місці.",
+      "💧 Пийте більше води під час використання.",
+      "🔥 Не перегрівайте – тримайте температуру в нормі.",
+      "🕒 Відпочинок — ключ до повного ефекту.",
+      "📦 Замовляйте тільки з перевірених джерел.",
+      "😴 Indica — на ніч, Sativa — на день.",
+      "💡 Прочитайте правила магазину перед замовленням.",
+      "🧘‍♂️ Розслабтесь, ввімкніть музику та насолоджуйтесь."
+    ];
+    let index = 0;
+    function rotateAdvice() {
+      adviceBox.textContent = advices[index];
+      index = (index + 1) % advices.length;
+    }
+    rotateAdvice();
+    setInterval(rotateAdvice, 5000);
+  </script>
+
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#4caf50" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.3 },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 120,
+          "color": "#4caf50",
+          "opacity": 0.2,
+          "width": 1
         },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": false }, "resize": true },
-          "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.4 } } }
-        },
-        "retina_detect": true
-      }
-    );
+        "move": { "enable": true, "speed": 1 }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "grab" }, "resize": true },
+        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.4 } } }
+      },
+      "retina_detect": true
+    });
   </script>
 
 </body>
 </html>
+
