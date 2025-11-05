@@ -92,10 +92,10 @@ header{
     opacity:0;
 }
 
-/* --- Нова сітка кнопок --- */
+/* --- Оновлена сітка кнопок (завжди 1 колонка) --- */
 .button-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Адаптивна сітка */
+    grid-template-columns: 1fr; /* ЗАВЖДИ один стовпець */
     gap: 20px;
     margin-top: 50px;
     max-width: 800px; /* Контролює ширину сітки */
@@ -118,13 +118,11 @@ header{
     font-weight:600;
 }
 
-/* --- Основна кнопка (Primary CTA) --- */
+/* --- Єдиний стиль для всіх кнопок --- */
 .button-primary {
     background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
     color:#fff;
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
-    grid-column: 1 / -1; /* Займає всю ширину сітки */
-    font-size: 20px; /* Більший акцент */
 }
 .button-primary:hover{
     background: linear-gradient(45deg, var(--primary-green-hover), var(--secondary-green-hover));
@@ -132,22 +130,8 @@ header{
     transform: translateY(-3px) scale(1.02); /* Більш виражений ефект */
 }
 
-/* --- Допоміжні кнопки --- */
-.button-secondary {
-    background: transparent;
-    color: var(--primary-green);
-    border: 2px solid var(--primary-green);
-    box-shadow: none;
-}
-.button-secondary:hover{
-    background: var(--primary-green);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
-    transform: translateY(-2px);
-}
-
 /* Анімації для кнопок */
-.button-grid .button:nth-child(1){animation-delay:.5s} /* CTA */
+.button-grid .button:nth-child(1){animation-delay:.5s} 
 .button-grid .button:nth-child(2){animation-delay:.7s}
 .button-grid .button:nth-child(3){animation-delay:.8s}
 .button-grid .button:nth-child(4){animation-delay:.9s}
@@ -275,12 +259,10 @@ footer{
     main { padding: 15px; width: 92%; }
 
     .button-grid {
-        grid-template-columns: 1fr; /* 1 колонка на мобільному */
         gap: 15px;
         margin-top: 40px;
     }
     .button {font-size:16px;padding:12px 20px;}
-    .button-primary { font-size: 18px; }
 
     .welcome-text{font-size:20px;margin-top:40px;padding:0 10px}
     .welcome-text:nth-of-type(2){ font-size: 16px; }
@@ -306,16 +288,7 @@ body.dark .button-primary {
     /* Основна кнопка залишається яскравою - це акцент */
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
-body.dark .button-secondary {
-    color: var(--secondary-green);
-    border-color: var(--secondary-green);
-}
-body.dark .button-secondary:hover {
-    background: var(--secondary-green);
-    color: var(--card-dark); /* Темний текст на світлій кнопці */
-    border-color: var(--secondary-green);
-    box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
-}
+
 body.dark .welcome-text { color: #ccc; }
 
 body.dark .photo-block{
@@ -344,8 +317,8 @@ body.dark #theme-toggle:hover {
 
 <body>
 <header>
-    <div class="header-logo"><img src="logo.jpg" alt="Logo" class="logo"/></div>
-    <div class="site-name">CANNA BANKA</div>
+    <div class="header-logo"><img src="logo.png.png" alt="Logo" class="logo"/></div>
+    <div class="site-name">Канабіс Україна</div>
     <div class="header-actions">
         <button id="theme-toggle" class="button">🌙 Темна тема</button>
     </div>
@@ -354,10 +327,10 @@ body.dark #theme-toggle:hover {
 <main>
     <div class="button-grid">
         <a href="https://t.me/operator_kanabis" class="button button-primary">🛒 ЗАМОВИТИ</a>
-        <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button button-secondary">📖 Правила магазину</a>
-        <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button button-secondary">🧾 Прайс</a>
-        <a href="https://cannabanka.github.io/otzive/" class="button button-secondary">👨‍💻 Відгуки</a>
-        <a href="https://t.me/operator_kanabis" class="button button-secondary">Канал</a>
+        <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button button-primary">📖 Правила магазину</a>
+        <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button button-primary">🧾 Прайс</a>
+        <a href="https://cannabanka.github.io/otzive/" class="button button-primary">👨‍💻 Відгуки</a>
+        <a href="https://t.me/operator_kanabis" class="button button-primary">Канал</a>
     </div>
 
     <div class="welcome-text">Ми працюємо, щоб Ви відпочивали.</div>
@@ -411,4 +384,3 @@ toggleBtn.addEventListener('click', () => {
 
 </body>
 </html>
-
