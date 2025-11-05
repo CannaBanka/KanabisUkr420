@@ -213,6 +213,93 @@ header{
     margin-bottom: 8px;
 }
 
+/* === СТИЛІ FAQ (ДОДАНО) === */
+.faq-container {
+    margin-top: 60px; /* Відступ від блоку з фото */
+    padding-top: 40px;
+    border-top: 1px solid var(--border-light); /* Розділювач */
+    text-align: left; /* Вирівнюємо вліво для читабельності */
+    
+    /* Анімація появи, як в інших блоків */
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    /* Затримка, щоб з'явилось після фото */
+    animation-delay: 2.2s; 
+
+    /* Обмежимо ширину, як у кнопок */
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-light);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-light);
+}
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.faq-question:hover {
+    color: var(--primary-green); /* Колір при наведенні */
+}
+
+.faq-icon {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-green);
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Плавна анімація */
+}
+
+.faq-answer p {
+    padding: 0 10px 20px 10px; /* Відступи для тексту відповіді */
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444; /* Як у .photo-text */
+    margin: 0; /* Скидаємо базовий відступ p */
+}
+
+/* СТИЛІ ДЛЯ АКТИВНОГО (ВІДКРИТОГО) ПИТАННЯ */
+.faq-item.active .faq-question {
+    color: var(--primary-green);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg); /* Анімація обертання для іконки */
+}
+/* === КІНЕЦЬ СТИЛІВ FAQ === */
+
 
 footer{
     background-color: #f9f9f9;
@@ -273,6 +360,19 @@ footer{
     .photo-text{font-size:15px;}
     .photo-title {font-size: 17px;}
 
+    /* Адаптивність FAQ (ДОДАНО) */
+    .faq-title {
+        font-size: 20px;
+    }
+    .faq-question {
+        font-size: 16px;
+        padding: 15px 0;
+    }
+    .faq-answer p {
+        font-size: 15px;
+    }
+    /* Кінець адаптивності FAQ */
+
     footer{font-size:14px;padding:12px 15px}
     .telegram-icon{width:24px;height:24px}
     #theme-toggle { padding: 6px 12px!important; font-size: 12px!important; }
@@ -301,6 +401,35 @@ body.dark .photo-block:hover {
 }
 body.dark .photo-text{color: #ccc;}
 body.dark .photo-title {color: var(--text-dark);}
+
+
+/* Dark Mode для FAQ (ДОДАНО) */
+body.dark .faq-container {
+    border-top-color: var(--border-dark);
+}
+body.dark .faq-title {
+    color: var(--text-dark);
+}
+body.dark .faq-item {
+    border-bottom-color: var(--border-dark);
+}
+body.dark .faq-question {
+    color: var(--text-dark);
+}
+body.dark .faq-question:hover {
+    color: var(--secondary-green);
+}
+body.dark .faq-icon {
+     color: var(--secondary-green);
+}
+body.dark .faq-item.active .faq-question {
+    color: var(--secondary-green);
+}
+body.dark .faq-answer p {
+    color: #ccc;
+}
+/* Кінець Dark Mode для FAQ */
+
 
 body.dark footer{background-color: var(--card-dark);color:#ccc; border-top: 1px solid var(--border-dark);}
 
@@ -350,7 +479,51 @@ body.dark #theme-toggle:hover {
             <div class="photo-title">Sativa</div> <div class="photo-text">Має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при втомі та для покращення настрою.</div>
         </div>
     </div>
-</main>
+
+    <div class="faq-container">
+        <h2 class="faq-title">Поширені питання (FAQ)</h2>
+        
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>Як зробити замовлення?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Все просто: натисніть кнопку "🛒 ЗАМОВИТI" на сайті. Вас перенаправить до нашого оператора в Telegram, який прийме ваше замовлення та відповість на всі запитання.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>Які є способи оплати?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Ми приймаємо оплату на банківську картку, а також в криптовалюті (USDT, BTC). Точні реквізити вам надасть оператор під час оформлення замовлення.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>Це безпечно?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Ми дотримуємося суворих правил конфіденційності. Всі дані про замовлення видаляються одразу після його успішного завершення. Ми дбаємо про вашу безпеку.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                <span>Ви працюєте в інших містах?</span>
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Наразі ми активно працюємо в Україні 🇺🇦 та Польщі 🇵🇱. Щоб дізнатися про наявність у вашому місті, будь ласка, зв'яжіться з оператором.</p>
+            </div>
+        </div>
+    </div>
+    </main>
 
 <footer>
     <div>🔒 Сайт захищено</div>
@@ -380,6 +553,47 @@ if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
 toggleBtn.addEventListener('click', () => {
     setTheme(!document.body.classList.contains('dark'));
 });
+
+
+// ======== ПОЧАТОК КОДУ ДЛЯ FAQ (ДОДАНО) ========
+const allFaqItems = document.querySelectorAll('.faq-item');
+
+allFaqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.faq-icon');
+
+    question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Закриваємо ВСІ інші питання
+        allFaqItems.forEach(otherItem => {
+            if (otherItem !== item) { // крім поточного
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                otherItem.querySelector('.faq-icon').textContent = '+';
+                otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Обробляємо поточне питання
+        if (isActive) {
+            // Якщо воно було активне - закриваємо
+            item.classList.remove('active');
+            answer.style.maxHeight = null;
+            icon.textContent = '+';
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            // Якщо воно було закрите - відкриваємо
+            item.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px'; // Встановлює точну висоту
+            icon.textContent = '–'; // Міняємо іконку на мінус
+            icon.style.transform = 'rotate(180deg)'; // Обертаємо для анімації
+        }
+    });
+});
+// ======== КІНЕЦЬ КОДУ ДЛЯ FAQ (ДОДАНО) ========
+
 </script>
 
 </body>
