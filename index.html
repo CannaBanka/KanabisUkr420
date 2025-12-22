@@ -441,6 +441,41 @@ body.dark #theme-toggle {
 body.dark #theme-toggle:hover {
     background: #fff;
 }
+
+.chat-button{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:linear-gradient(45deg,var(--primary-green),var(--secondary-green));
+    color:#fff;
+    border:none;
+    box-shadow:0 6px 18px rgba(0,0,0,0.2);
+    font-size:22px;
+    cursor:pointer;
+    z-index:1000;
+}
+.chat-panel{
+    position:fixed;
+    right:18px;
+    bottom:86px;
+    width:300px;
+    max-width:90vw;
+    background:var(--card-light);
+    border:1px solid var(--border-light);
+    box-shadow:0 8px 30px rgba(0,0,0,0.15);
+    border-radius:12px;
+    overflow:hidden;
+    z-index:1000;
+}
+.chat-panel .chat-header{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:linear-gradient(90deg,var(--primary-green),var(--secondary-green));color:#fff;font-weight:600}
+.chat-panel .chat-body{padding:12px}
+.chat-panel button#chat-close{background:transparent;border:none;color:#fff;font-size:16px;cursor:pointer}
+.chat-panel a.button-primary{display:inline-block;margin-top:8px}
+
+body.dark .chat-panel{background:var(--card-dark);border-color:var(--border-dark)}
 </style>
 </head>
 
@@ -523,6 +558,8 @@ body.dark #theme-toggle:hover {
             </div>
         </div>
     </div>
+    </div>
+
     </main>
 
 <footer>
@@ -531,6 +568,16 @@ body.dark #theme-toggle:hover {
         <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram" class="telegram-icon"/>
     </a>
 </footer>
+
+<!-- Кнопка чата и панель -->
+<button id="chat-button" class="chat-button" aria-label="Открыть чат">💬</button>
+<div id="chat-panel" class="chat-panel" hidden>
+    <div class="chat-header">Чат <button id="chat-close">✖</button></div>
+    <div class="chat-body">
+        <p>Связаться с оператором:</p>
+        <a href="https://t.me/operator_kanabis" target="_blank" rel="noopener noreferrer" class="button button-primary">Открыть чат в Telegram</a>
+    </div>
+</div>
 
 <script>
 const toggleBtn=document.getElementById('theme-toggle');
@@ -594,11 +641,39 @@ allFaqItems.forEach(item => {
 });
 // ======== КІНЕЦЬ КОДУ ДЛЯ FAQ (ДОДАНО) ========
 
+// КОД ДЛЯ ЧАТ-КНОПКИ
+const chatButton = document.getElementById('chat-button');
+const chatPanel = document.getElementById('chat-panel');
+const chatClose = document.getElementById('chat-close');
+
+function openChat(){
+    chatPanel.removeAttribute('hidden');
+    chatPanel.style.display = 'block';
+}
+function closeChat(){
+    chatPanel.setAttribute('hidden','');
+    chatPanel.style.display = 'none';
+}
+
+if(chatButton){
+    chatButton.addEventListener('click', ()=>{
+        if(chatPanel.hasAttribute('hidden')) openChat(); else closeChat();
+    });
+}
+if(chatClose){ chatClose.addEventListener('click', closeChat); }
+
+// Закрыть панель при клике вне неё (mobile-friendly)
+document.addEventListener('click', (e)=>{
+    if(!chatPanel || !chatButton) return;
+    if(chatPanel.hasAttribute('hidden')) return;
+    if(e.target === chatButton || chatPanel.contains(e.target)) return;
+    closeChat();
+});
+
 </script>
 
 </body>
 </html>
-
 
 
 
