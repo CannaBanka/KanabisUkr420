@@ -1,129 +1,111 @@
 <!DOCTYPE html>
 <html lang="uk" class="dark">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CannaBanka</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
-<style>
-:root {
-    --primary-purple: #7c3aed;
-    --primary-purple-hover: #6d28d9;
-    --secondary-purple: #a855f7;
-    --secondary-purple-hover: #9333ea;
-    --bg-dark: #0f0a1a;
-    --card-dark: #1a1428;
-    --text-dark: #e8e8f0;
-    --border-dark: #3d2a5c;
-}
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#0f0a1a">
+    <title>CannaBanka — Надійний сервіс 🇺🇦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --primary-purple: #7c3aed;
+            --primary-purple-hover: #6d28d9;
+            --secondary-purple: #a855f7;
+            --secondary-purple-hover: #9333ea;
+            --bg-dark: #0f0a1a;
+            --card-dark: #1a1428;
+            --text-dark: #e8e8f0;
+            --border-dark: #3d2a5c;
+            --success-green: #4ade80;
+        }
 
-/* Прибираємо білу смугу знизу */
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: 'Open Sans', Arial, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-    display: flex;
-    flex-direction: column;
-}
+        html, body {
+            margin: 0; padding: 0; min-height: 100vh;
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: var(--bg-dark); color: var(--text-dark);
+            display: flex; flex-direction: column; scroll-behavior: smooth;
+        }
 
-@keyframes fadeInUp { 0%{opacity:0;transform:translateY(20px)} 100%{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-header {
-    display: flex;
-    align-items: center;
-    padding: 15px 40px;
-    background-color: var(--card-dark);
-    border-bottom: 1px solid var(--border-dark);
-}
+        header {
+            display: flex; align-items: center; padding: 15px 40px;
+            background-color: var(--card-dark); border-bottom: 1px solid var(--border-dark);
+            position: sticky; top: 0; z-index: 1000;
+        }
 
-.logo { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
-.site-name { flex: 1; text-align: center; font-family: 'Montserrat'; font-size: 22px; font-weight: 700; }
+        .logo { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
+        .site-name { flex: 1; text-align: center; font-family: 'Montserrat'; font-size: 22px; font-weight: 700; letter-spacing: 1px; }
 
-main {
-    flex: 1 0 auto;
-    text-align: center;
-    max-width: 1000px;
-    width: 95%;
-    margin: 20px auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        main { flex: 1 0 auto; text-align: center; max-width: 1000px; width: 95%; margin: 20px auto; padding: 20px; box-sizing: border-box; }
 
-/* --- ВУЗЬКІ КНОПКИ --- */
-.button-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    max-width: 400px; /* Обмежена ширина для кнопок */
-    margin: 40px auto;
-}
+        /* СТИЛІ КНОПОК */
+        .button-grid { display: grid; grid-template-columns: 1fr; gap: 15px; max-width: 400px; margin: 40px auto; }
+        .button-primary {
+            position: relative; overflow: hidden; display: block; padding: 14px 20px;
+            background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
+            color: #fff; text-decoration: none; border-radius: 30px;
+            font-family: 'Montserrat'; font-weight: 600; font-size: 16px;
+            transition: all 0.3s ease; animation: fadeInUp 0.8s ease forwards;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        .button-primary::after {
+            content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(45deg); transition: 0.6s;
+        }
+        .button-primary:hover::after { left: 100%; top: 100%; }
+        .button-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5); }
 
-.button-primary {
-    display: block;
-    padding: 14px 20px;
-    background: linear-gradient(135deg, var(--primary-purple), var(--secondary-purple));
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-    font-family: 'Montserrat';
-    font-weight: 600;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    animation: fadeInUp 1s ease forwards;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-}
+        .welcome-text { margin-top: 30px; font-size: 22px; font-weight: 600; animation: fadeInUp 1s ease forwards; animation-delay: 0.8s; opacity: 0; }
+        .status-text { color: var(--secondary-purple); font-size: 18px; margin: 10px 0 40px; animation: fadeInUp 1s ease forwards; animation-delay: 1s; opacity: 0; }
 
-.button-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
-}
+        .photos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
+        .photo-block { 
+            background: #1e1b2e; border: 1px solid var(--border-dark); width: 280px; 
+            padding: 15px; border-radius: 12px; text-align: left;
+            animation: fadeInUp 1s ease forwards; opacity: 0; transition: transform 0.3s ease;
+        }
+        .photo-block:hover { transform: translateY(-5px); border-color: var(--secondary-purple); }
+        .photo-block img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background: #222; }
+        .photo-title { font-family: 'Montserrat'; font-weight: 700; font-size: 18px; margin-bottom: 8px; color: #fff; }
+        .photo-text { font-size: 14px; line-height: 1.5; color: #ccc; }
 
-.welcome-text { margin-top: 30px; font-size: 22px; font-weight: 600; animation: fadeInUp 1s ease forwards; animation-delay: 1s; opacity: 0; }
-.status-text { color: var(--secondary-purple); font-size: 18px; margin: 10px 0 40px; animation: fadeInUp 1s ease forwards; animation-delay: 1.2s; opacity: 0; }
+        .faq-container { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left; padding-bottom: 40px; border-top: 1px solid var(--border-dark); padding-top: 30px; }
+        .faq-title { font-family: 'Montserrat'; text-align: center; font-size: 24px; margin-bottom: 25px; }
+        .faq-item { border-bottom: 1px solid var(--border-dark); }
+        .faq-question { 
+            width: 100%; background: none; border: none; padding: 18px 0; 
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Montserrat'; font-weight: 600; font-size: 17px; 
+            color: #fff; cursor: pointer; transition: color 0.3s;
+        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-answer p { padding: 0 5px 20px 5px; color: #bbb; font-size: 15px; line-height: 1.6; margin: 0; }
 
-/* Картки товарів */
-.photos { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 50px; }
-.photo-block { 
-    background: #1e1b2e; 
-    border: 1px solid var(--border-dark); 
-    width: 280px; 
-    padding: 15px; 
-    border-radius: 12px; 
-    text-align: left;
-    animation: fadeInUp 1s ease forwards;
-    opacity: 0;
-}
+        /* ВІДЖЕТ */
+        .order-notification {
+            position: fixed; bottom: 100px; left: 20px;
+            background: rgba(26, 20, 40, 0.95); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-dark); padding: 12px 18px;
+            border-radius: 15px; display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6); z-index: 999;
+            transform: translateX(-160%); transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .order-notification.show { transform: translateX(0); }
+        .order-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--border-dark); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .order-city { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 2px; }
+        .order-info { font-size: 12px; color: #aaa; }
+        .status-badge { color: var(--success-green); font-weight: 600; }
 
-.photo-block img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; background: #222; }
-.photo-title { font-family: 'Montserrat'; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
-.photo-text { font-size: 14px; line-height: 1.5; color: #ccc; }
+        footer { padding: 20px 40px; background: var(--card-dark); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-dark); }
+        .chat-button { position: fixed; right: 20px; bottom: 20px; width: 60px; height: 60px; border-radius: 50%; background: var(--primary-purple); color: #fff; border: none; font-size: 26px; cursor: pointer; z-index: 1000; box-shadow: 0 5px 20px rgba(124, 58, 237, 0.5); }
 
-/* FAQ БЛОК */
-.faq-container { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: left; padding-bottom: 40px; border-top: 1px solid var(--border-dark); padding-top: 30px; }
-.faq-title { font-family: 'Montserrat'; text-align: center; font-size: 24px; margin-bottom: 25px; }
-.faq-item { border-bottom: 1px solid var(--border-dark); }
-.faq-question { 
-    width: 100%; background: none; border: none; padding: 18px 0; 
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: 'Montserrat'; font-weight: 600; font-size: 17px; 
-    color: #fff; cursor: pointer; transition: color 0.3s;
-}
-.faq-question:hover { color: var(--secondary-purple); }
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-.faq-answer p { padding: 0 5px 20px 5px; color: #bbb; font-size: 15px; line-height: 1.6; margin: 0; }
-
-footer { flex-shrink: 0; padding: 20px 40px; background: var(--card-dark); border-top: 1px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; }
-.chat-button { position: fixed; right: 20px; bottom: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--primary-purple); color: #fff; border: none; font-size: 22px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 100; }
-
-@media(max-width: 600px) {
-    header { padding: 15px 20px; }
-    .site-name { font-size: 18px; }
-    .photo-block { width: 100%; }
-}
-</style>
+        @media(max-width: 600px) {
+            .order-notification { width: calc(100% - 110px); bottom: 20px; left: 10px; }
+            header { padding: 15px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -134,31 +116,31 @@ footer { flex-shrink: 0; padding: 20px 40px; background: var(--card-dark); borde
 
 <main>
     <div class="button-grid">
-        <a href="https://t.me/operator_kanabis" class="button-primary" style="animation-delay: 0.2s">🛒 ЗАМОВИТИ</a>
-        <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button-primary" style="animation-delay: 0.4s">📖 Правила магазину</a>
-        <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button-primary" style="animation-delay: 0.6s">🧾 Прайс</a>
-        <a href="https://cannabanka.github.io/otzive/" class="button-primary" style="animation-delay: 0.8s">👨‍💻 Відгуки</a>
-        <a href="https://t.me/operator_kanabis" class="button-primary" style="animation-delay: 1s">📢 Канал</a>
+        <a href="https://t.me/operator_kanabis" class="button-primary" style="animation-delay: 0.1s">🛒 ЗАМОВИТИ</a>
+        <a href="https://telegra.ph/Pravila-Magazinu-06-23" class="button-primary" style="animation-delay: 0.2s">📖 Правила магазину</a>
+        <a href="https://telegra.ph/AKTUALNIJ-PRAJS-06-23" class="button-primary" style="animation-delay: 0.3s">🧾 Прайс</a>
+        <a href="https://cannabanka.github.io/otzive/" class="button-primary" style="animation-delay: 0.4s">👨‍💻 Відгуки</a>
+        <a href="https://t.me/operator_kanabis" class="button-primary" style="animation-delay: 0.5s">📢 Канал</a>
     </div>
 
     <div class="welcome-text">Ми працюємо, щоб Ви відпочивали.</div>
-    <div class="status-text">Працюємо 🇺🇦 🇵🇱</div>
+    <div class="status-text">Працюємо по всій Україні 🇺🇦 — ONLINE</div>
 
     <div class="photos">
-        <div class="photo-block" style="animation-delay:1.4s">
+        <div class="photo-block" style="animation-delay: 1.2s">
             <img src="1.jpg" alt="Indica"/>
             <div class="photo-title">Indica</div>
-            <div class="photo-text">Містить вищий рівень CBD і нижчий рівень THC. Ефект: розслабляючий, седативний. Використання: при стресі, безсонні, болю.</div>
+            <div class="photo-text">Містить вищий рівень CBD і нижчий рівень THC. Ефект: розслабляючий, седативний.</div>
         </div>
-        <div class="photo-block" style="animation-delay:1.6s">
+        <div class="photo-block" style="animation-delay: 1.4s">
             <img src="2.png" alt="Hybrid"/>
             <div class="photo-title">Hybrid</div>
-            <div class="photo-text">Поєднує в собі риси Sativa та Indica, пропонуючи збалансований ефект. Ідеально для тих, хто шукає помірне розслаблення без сильної втоми.</div>
+            <div class="photo-text">Поєднує в собі риси Sativa та Indica, пропонуючи збалансований ефект.</div>
         </div>
-        <div class="photo-block" style="animation-delay:1.8s">
+        <div class="photo-block" style="animation-delay: 1.6s">
             <img src="3.png" alt="Sativa"/>
             <div class="photo-title">Sativa</div>
-            <div class="photo-text">Має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект. Використовується при втомі та для покращення настрою.</div>
+            <div class="photo-text">Має вищий рівень THC, що забезпечує енергійний, стимулюючий ефект.</div>
         </div>
     </div>
 
@@ -166,52 +148,120 @@ footer { flex-shrink: 0; padding: 20px 40px; background: var(--card-dark); borde
         <h2 class="faq-title">Поширені питання (FAQ)</h2>
         <div class="faq-item">
             <button class="faq-question">Як зробити замовлення? <span style="color:var(--secondary-purple)">+</span></button>
-            <div class="faq-answer"><p>Все просто: натисніть кнопку "🛒 ЗАМОВИТИ", і вас перенаправить до нашого оператора в Telegram, який прийме ваше замовлення.</p></div>
+            <div class="faq-answer"><p>Все просто: натисніть кнопку "🛒 ЗАМОВИТИ", і вас перенаправить до нашого оператора в Telegram.</p></div>
         </div>
         <div class="faq-item">
             <button class="faq-question">Які є способи оплати? <span style="color:var(--secondary-purple)">+</span></button>
-            <div class="faq-answer"><p>Ми приймаємо оплату на банківську картку, а також в криптовалюті (USDT/BTC). Реквізити надасть оператор.</p></div>
+            <div class="faq-answer"><p>Ми приймаємо оплату на банківську картку, а також в криптовалюті (USDT/BTC).</p></div>
         </div>
         <div class="faq-item">
             <button class="faq-question">Це безпечно? <span style="color:var(--secondary-purple)">+</span></button>
-            <div class="faq-answer"><p>Ми дотримуємося суворих правил конфіденційності. Всі дані про замовлення видаляються одразу після його завершення.</p></div>
+            <div class="faq-answer"><p>Ми дотримуємося суворих правил конфіденційності. Всі дані видаляються одразу після завершення.</p></div>
         </div>
         <div class="faq-item">
             <button class="faq-question">Ви працюєте в інших містах? <span style="color:var(--secondary-purple)">+</span></button>
-            <div class="faq-answer"><p>Наразі ми активно працюємо в Україні 🇺🇦 та Польщі 🇵🇱. Щоб дізнатися про наявність у вашому місті, будь ласка, зв'яжіться з оператором.</p></div>
+            <div class="faq-answer"><p>Наразі ми працюємо в усіх підконтрольних містах України 🇺🇦. Зв'яжіться з оператором для уточнення.</p></div>
         </div>
     </div>
 </main>
 
+<div id="order-notification" class="order-notification">
+    <div class="order-avatar" id="order-emoji">📦</div>
+    <div>
+        <div id="order-title" class="order-city">Київ (Клад)</div>
+        <div class="order-info">
+            <span id="order-time">Щойно</span> — <span id="order-status" class="status-badge">оплачено</span>
+        </div>
+    </div>
+</div>
+
 <footer>
-    <div style="font-size: 14px; opacity: 0.7;">🔒 Сайт захищено 2026</div>
-    <a href="https://t.me/operator_kanabis" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" style="width:28px" alt="TG"/></a>
+    <div style="font-size: 13px; opacity: 0.6;">🔒 Сайт захищено 2026</div>
+    <a href="https://t.me/operator_kanabis" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" style="width:24px" alt="TG"/></a>
 </footer>
 
 <button class="chat-button" onclick="window.open('https://t.me/operator_kanabis', '_blank')">💬</button>
 
 <script>
+// FAQ
 document.querySelectorAll('.faq-question').forEach(button => {
     button.addEventListener('click', () => {
         const answer = button.nextElementSibling;
         const isOpen = answer.style.maxHeight;
-        const span = button.querySelector('span');
-        
         document.querySelectorAll('.faq-answer').forEach(a => a.style.maxHeight = null);
-        document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
-        
-        if (!isOpen) {
-            answer.style.maxHeight = answer.scrollHeight + "px";
-            span.textContent = '−';
-        }
+        if (!isOpen) answer.style.maxHeight = answer.scrollHeight + "px";
     });
 });
+
+// ДАНІ ВІДЖЕТА
+const orderData = {
+    cities: [
+        "Київ", "Львів", "Харків", "Одеса", "Дніпро", "Вінниця", "Полтава", "Чернігів", "Черкаси", 
+        "Житомир", "Суми", "Хмельницький", "Чернівці", "Рівне", "Івано-Франківськ", "Тернопіль", 
+        "Луцьк", "Кропивницький", "Біла Церква", "Кременчук", "Ужгород", "Бровари", "Павлоград", 
+        "Кам'янське", "Конотоп", "Умань", "Мукачево", "Олександрія", "Шостка", "Бердичів", 
+        "Дрогобич", "Ніжин", "Ізмаїл", "Новомосковськ", "Коростень", "Калуш", "Ковель", "Сміла", 
+        "Червоноград", "Бориспіль", "Стрий", "Коломия", "Фастів", "Ірпінь", "Вишневе", "Васильків", "Боярка"
+    ],
+    methods: ["Клад", "Доставка Кур'єр", "Доставка Таксі", "Пошта"],
+    statuses: [
+        { text: "оплачено", color: "#4ade80", emoji: "💎" },
+        { text: "доставлено", color: "#4ade80", emoji: "✅" },
+        { text: "видано", color: "#a855f7", emoji: "📦" }
+    ]
+};
+
+// ГЕНЕРАЦІЯ ВИПАДКОВОГО ЧАСУ
+function getRealisticTime() {
+    const totalMinutes = Math.floor(Math.random() * 140); // Від 0 до 140 хвилин
+    
+    if (totalMinutes === 0) return "щойно";
+    if (totalMinutes < 60) return totalMinutes + " хв тому";
+    
+    const hours = Math.floor(totalMinutes / 60);
+    const mins = totalMinutes % 60;
+    return mins > 0 ? hours + " год " + mins + " хв тому" : hours + " год тому";
+}
+
+function getRandomOrder() {
+    const city = orderData.cities[Math.floor(Math.random() * orderData.cities.length)];
+    const method = orderData.methods[Math.floor(Math.random() * orderData.methods.length)];
+    const status = orderData.statuses[Math.floor(Math.random() * orderData.statuses.length)];
+    
+    return { 
+        title: city + " (" + method + ")", 
+        status: status, 
+        time: getRealisticTime() 
+    };
+}
+
+function showNotification() {
+    const el = document.getElementById('order-notification');
+    const data = getRandomOrder();
+    
+    document.getElementById('order-title').textContent = data.title;
+    document.getElementById('order-time').textContent = data.time;
+    
+    const statusEl = document.getElementById('order-status');
+    statusEl.textContent = data.status.text;
+    statusEl.style.color = data.status.color;
+    document.getElementById('order-emoji').textContent = data.status.emoji;
+
+    el.classList.add('show');
+    
+    setTimeout(() => { el.classList.remove('show'); }, 6000);
+
+    // Пауза між появами: від 40 секунд до 2.5 хвилин
+    const nextAppearance = Math.floor(Math.random() * (150000 - 40000) + 40000);
+    setTimeout(showNotification, nextAppearance);
+}
+
+// Перша поява через 8 секунд
+setTimeout(showNotification, 8000);
 </script>
+
 </body>
 </html>
-
-
-
 
 
 
