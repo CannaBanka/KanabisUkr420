@@ -211,13 +211,10 @@ const orderData = {
     ]
 };
 
-// ГЕНЕРАЦІЯ ВИПАДКОВОГО ЧАСУ
 function getRealisticTime() {
-    const totalMinutes = Math.floor(Math.random() * 140); // Від 0 до 140 хвилин
-    
+    const totalMinutes = Math.floor(Math.random() * 140);
     if (totalMinutes === 0) return "щойно";
     if (totalMinutes < 60) return totalMinutes + " хв тому";
-    
     const hours = Math.floor(totalMinutes / 60);
     const mins = totalMinutes % 60;
     return mins > 0 ? hours + " год " + mins + " хв тому" : hours + " год тому";
@@ -227,7 +224,6 @@ function getRandomOrder() {
     const city = orderData.cities[Math.floor(Math.random() * orderData.cities.length)];
     const method = orderData.methods[Math.floor(Math.random() * orderData.methods.length)];
     const status = orderData.statuses[Math.floor(Math.random() * orderData.statuses.length)];
-    
     return { 
         title: city + " (" + method + ")", 
         status: status, 
@@ -236,6 +232,17 @@ function getRandomOrder() {
 }
 
 function showNotification() {
+    // 1. ПЕРЕВІРКА ЧАСУ (0:00 - 9:00)
+    const currentHour = new Date().getHours();
+    const nextAppearance = Math.floor(Math.random() * (150000 - 40000) + 40000);
+
+    if (currentHour >= 0 && currentHour < 9) {
+        // Якщо ніч, нічого не показуємо, просто плануємо наступну перевірку
+        setTimeout(showNotification, nextAppearance);
+        return; 
+    }
+
+    // 2. ЛОГІКА ПОКАЗУ (якщо час не нічний)
     const el = document.getElementById('order-notification');
     const data = getRandomOrder();
     
@@ -251,8 +258,7 @@ function showNotification() {
     
     setTimeout(() => { el.classList.remove('show'); }, 6000);
 
-    // Пауза між появами: від 40 секунд до 2.5 хвилин
-    const nextAppearance = Math.floor(Math.random() * (150000 - 40000) + 40000);
+    // Пауза між появами
     setTimeout(showNotification, nextAppearance);
 }
 
@@ -262,6 +268,7 @@ setTimeout(showNotification, 8000);
 
 </body>
 </html>
+
 
 
 
